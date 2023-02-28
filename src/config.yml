@@ -2,7 +2,7 @@ api:
   title: Polyglot API
   version: 1.0
   description: Translate Chinese or Russian into English
-  docs_endpoints:
+  docs_endpoint:
     openapi: /docs
     redoc: /redoc
   cors:
