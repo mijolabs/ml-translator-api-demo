@@ -1,0 +1,9 @@
+fastapi
+fasttext
+nltk
+python-box[yaml]
+sacremoses
+sentencepiece
+torch
+transformers
+uvicorn[standard]
