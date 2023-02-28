@@ -14,7 +14,6 @@ A REST API for translating Chinese and Russian into English using pretrained lan
     address = {Lisbon, Portugal}
    }
   ```
-
 - https://huggingface.co/Helsinki-NLP/opus-mt-ru-en
   ```bibtex
   @InProceedings{TiedemannThottingal:EAMT2020,
@@ -28,13 +27,17 @@ A REST API for translating Chinese and Russian into English using pretrained lan
 
 - https://github.com/facebookresearch/fastText
   ```bibtex
-  @InProceedings{joulin2017bag,
+  @article{joulin2016bag,
     title={Bag of Tricks for Efficient Text Classification},
     author={Joulin, Armand and Grave, Edouard and Bojanowski, Piotr and Mikolov, Tomas},
-    booktitle={Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics: Volume 2, Short Papers},
-    month={April},
-    year={2017},
-    publisher={Association for Computational Linguistics},
-    pages={427--431},
+    journal={arXiv preprint arXiv:1607.01759},
+    year={2016}
+  }
+  ```bibtex
+  @article{joulin2016fasttext,
+    title={FastText.zip: Compressing text classification models},
+    author={Joulin, Armand and Grave, Edouard and Bojanowski, Piotr and Douze, Matthijs and J{\'e}gou, H{\'e}rve and Mikolov, Tomas},
+    journal={arXiv preprint arXiv:1612.03651},
+    year={2016}
   }
   ```

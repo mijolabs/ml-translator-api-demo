@@ -2,18 +2,18 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.config import CONFIG
-from src.data_models import TranslationRequest
-from src.polyglot import Polyglot
+from src.routes import v1
+
+
 
 config = CONFIG.api
-polyglot = Polyglot()
 
 app = FastAPI(
     title=config.title,
     version=config.version,
     description=config.description,
-    docs_url=config.docs_endpoints.openapi,
-    redoc_url=config.docs_endpoints.redoc,
+    docs_url=config.docs_endpoint.openapi,
+    redoc_url=config.docs_endpoint.redoc,
 )
 app.add_middleware(
     CORSMiddleware,
@@ -23,16 +23,4 @@ app.add_middleware(
     allow_headers=config.cors.headers,
 )
 
-
-@app.on_event("startup")
-def startup():
-    ...
-
-
-@app.post("/detect/")
-def detect():
-    ...
-
-@app.post("/translate/")
-def translate(request: TranslationRequest):
-    return
+app.include_router(v1.router, prefix="/v1", tags=["v1"])

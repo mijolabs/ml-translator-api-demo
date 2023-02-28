@@ -8,7 +8,7 @@ from nltk import sent_tokenize
 from transformers import MarianMTModel, MarianTokenizer
 
 from src.config import CONFIG
-from src.data_models import (
+from src.schemas import (
     DetectionRequest,
     DetectionResult,
     ErrorResponse,
@@ -89,7 +89,7 @@ class Polyglot:
         tokenizer = self.models[language_pair].tokenizer
         model = self.models[language_pair].model
 
-        sentences = sent_tokenize(input_text)
+        sentences = sent_tokenize(translation_request.text)
 
         batches = [
             sentences[i:i + self.max_batch_size]
