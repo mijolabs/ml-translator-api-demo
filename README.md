@@ -1,11 +1,7 @@
-# polyglot-api
-A REST API for translating Chinese and Russian into English using pretrained language models.
-
-
-### Features
-- Language detection using FastText.
-- 
-
+# Polyglot API
+Polyglot API is a REST API for translating languages using pretrained language models. The stack consists of FastAPI and uvicorn to provide the API service, FastTrack and accompanying language identification model is used for automatic language detection, and Opus-MT language models are used for the text translation. Currently only supports the following language pairs, but additional Opus-MT models can be easily added.
+- `ru-en`
+- `zh-en`
 
 ### Local Development
 1. `git clone ...`
