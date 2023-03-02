@@ -5,14 +5,6 @@ api:
   docs_endpoint:
     openapi: /docs
     redoc: /redoc
-  cors:
-    origins:
-      - "*"
-    credentials: true
-    methods:
-      - "*"
-    headers:
-      - "*"
 
 polyglot:
   max_batch_size: 32
@@ -20,7 +12,7 @@ polyglot:
   early_stopping: true
   num_beams: 5
   models:
-    base_path: pretrained_models
+    base_directory: pretrained-models
     detection: lid.176/lid.176.ftz
     translation:
       ru-en: opus-mt-ru-en

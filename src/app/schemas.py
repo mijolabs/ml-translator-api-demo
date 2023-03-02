@@ -26,9 +26,6 @@ class DetectionResult(BaseModel):
             }
         }
 
-class ErrorResponse(BaseModel):
-    error: str
-
 class TranslationRequest(BaseModel):
     source: Union[str, None] = None
     target: Union[str, None] = "en"
