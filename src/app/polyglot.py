@@ -1,17 +1,14 @@
 from collections import defaultdict
-from timeit import default_timer as timestamp
-from typing import Union
 
 from box import Box
 import fasttext
 from nltk import sent_tokenize
 from transformers import MarianMTModel, MarianTokenizer
 
-from src.config import CONFIG
-from src.schemas import (
+from app.config import CONFIG
+from app.schemas import (
     DetectionRequest,
     DetectionResult,
-    ErrorResponse,
     TranslationRequest,
     TranslationResult
 )
@@ -30,46 +27,29 @@ class Polyglot:
 
     
     def init_detection_model(self) -> fasttext.FastText:
-        model_filepath = f"{self.models.base_path}/{self.models.detection}"
+        model_filepath = f"{self.models.base_directory}/{self.models.detection}"
         fasttext.FastText.eprint = lambda x: None
 
         return fasttext.load_model(model_filepath)
 
     
     def init_translation_models(self) -> Box:
-        print("[*] Initializing pretrained language models")
+        print(
+            f"[*] Initializing pretrained language models: {[model for model in self.models.translation.values()]}"
+        )
+
         models = defaultdict(Box)
         
         for language_pair, model_name in self.models.translation.items():
             _params = {
-                "pretrained_model_name_or_path": f"{self.models.base_path}/{model_name}",
+                "pretrained_model_name_or_path": f"{self.models.base_directory}/{model_name}",
                 "local_files_only": True
             }
 
             models[language_pair].tokenizer = MarianTokenizer.from_pretrained(**_params)
             models[language_pair].model = MarianMTModel.from_pretrained(**_params)
-        
+
         return models
-
-    
-    def translate(
-        self,
-        translation_request: TranslationRequest
-    ) -> Union[TranslationResult, ErrorResponse]:
-        if not translation_request.source:
-            result = self.detect_language(
-                DetectionRequest(text=translation_request.text)
-            )
-
-            translation_request.source = result.language
-
-        language_pair = f"{translation_request.source}-{translation_request.target}"
-
-        if language_pair in self.valid_language_pairs:
-            return self.generate_translation(translation_request)
-
-        else:
-            return ErrorResponse(error=f"invalid language pair: {language_pair}")
 
 
     def detect_language(self, detection_request: DetectionRequest) -> DetectionResult:
@@ -92,10 +72,10 @@ class Polyglot:
         sentences = sent_tokenize(translation_request.text)
 
         batches = [
-            sentences[i:i + self.max_batch_size]
-            for i in range(0, len(sentences), self.max_batch_size)
+            sentences[start:start + self.max_batch_size]
+            for start in range(0, len(sentences), self.max_batch_size)
         ]
-        
+
         translated_sentences = []
 
         for batch in batches:
@@ -116,16 +96,3 @@ class Polyglot:
             target=translation_request.target,
             translation=" ".join(translated_sentences)
         )
-
-
-if __name__ == "__main__":
-    p = Polyglot()
-
-    input_text = "Привет, это хороший день."
-
-    _alpha = timestamp()
-    result = p.translate(
-        TranslationRequest(text=input_text)
-    )
-    print(result)
-    print(f"[*] Time elapsed: {timestamp() - _alpha:.3}")

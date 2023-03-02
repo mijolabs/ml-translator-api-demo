@@ -1,5 +1,5 @@
 fastapi
-fasttext
+fasttext-wheel
 nltk
 python-box[yaml]
 sacremoses
