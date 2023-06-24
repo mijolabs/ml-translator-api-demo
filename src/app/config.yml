@@ -1,5 +1,5 @@
 api:
-  title: Polyglot API
+  title: Translator API
   version: 0.1.0
   description: Detect languages and translate input text.
   response:
@@ -14,7 +14,7 @@ api:
     - /favicon.ico
     - /_health
 
-polyglot:
+translator:
   max_batch_size: 32
   max_new_tokens: 512
   early_stopping: true

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from app.polyglot import Polyglot
+from app.translator import Translator
 from app.schemas import (
     DetectionRequest,
     DetectionResult,
@@ -11,12 +11,12 @@ from app.schemas import (
 
 
 router = APIRouter()
-polyglot = Polyglot()
+translator = Translator()
 
 
 @router.post("/detect")
 async def detect(detection_request: DetectionRequest) -> DetectionResult:
-    return polyglot.detect_language(detection_request)
+    return translator.detect_language(detection_request)
 
 
 @router.post("/translate")
@@ -29,7 +29,7 @@ async def translate(translation_request: TranslationRequest) -> TranslationResul
     Currently supports `ru-en` and `zh-en`. 
     """
     if not translation_request.source:
-        result = polyglot.detect_language(
+        result = translator.detect_language(
             DetectionRequest(text=translation_request.text)
         )
 
@@ -37,9 +37,9 @@ async def translate(translation_request: TranslationRequest) -> TranslationResul
 
     language_pair = f"{translation_request.source}-{translation_request.target}"
 
-    if not language_pair in polyglot.valid_language_pairs:
+    if not language_pair in translator.valid_language_pairs:
         raise HTTPException(
             status_code=400, detail=f"Invalid language pair: {language_pair}"
         )
 
-    return polyglot.generate_translation(translation_request)
+    return translator.generate_translation(translation_request)
