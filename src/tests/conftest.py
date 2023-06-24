@@ -2,7 +2,7 @@ from fastapi.testclient import TestClient
 from pytest import fixture
 
 from app.main import app
-from app.polyglot import Polyglot
+from app.translator import Translator
 
 
 
@@ -13,5 +13,5 @@ def client():
 
 
 @fixture(scope="module")
-def polyglot():
-    return Polyglot()
+def translator():
+    return Translator()

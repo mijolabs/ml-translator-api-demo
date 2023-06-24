@@ -1,5 +1,5 @@
-# Polyglot API
-Polyglot API is a REST API for translating languages using pretrained language models. The stack consists of FastAPI and uvicorn to provide the API service, FastTrack and accompanying language identification model is used for automatic language detection, and Opus-MT language models are used for the text translation. Currently only supports the following language pairs, but additional Opus-MT models can be easily added.
+# Translator API Demo
+This is a demo project for a REST API for translating text using pretrained language models. The stack consists of FastAPI and Uvicorn to provide the API service, FastTrack and accompanying language identification model is used for automatic language detection, and Opus-MT language models are used for the text translation. Currently only supports the following language pairs, but additional Opus-MT models can be added.
 - `ru-en`
 - `zh-en`
 
@@ -10,8 +10,8 @@ Polyglot API is a REST API for translating languages using pretrained language m
 
 ### Docker Build
 1. `cd src`
-2. `docker build -t polyglot .`
-3. `docker run -p "80:80" polyglot`
+2. `docker build -t translator .`
+3. `docker run -p "80:80" translator`
 
 To start a local dev server:
 1. `cd src/dev-tools`

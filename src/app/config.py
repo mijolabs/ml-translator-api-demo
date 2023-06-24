@@ -14,4 +14,4 @@ logging.getLogger("uvicorn.access").addFilter(AccessLogFilter())
 cwd = Path(__file__).parent
 
 CONFIG = box_from_file(f"{cwd}/config.yml")
-CONFIG.polyglot.models.base_directory = f"{cwd.parent}/{CONFIG.polyglot.models.base_directory}"
+CONFIG.translator.models.base_directory = f"{cwd.parent}/{CONFIG.translator.models.base_directory}"

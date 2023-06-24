@@ -4,7 +4,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV NLTK_DATA ~/nltk_data
 
-WORKDIR /polyglot-api
+WORKDIR /translator-api
 
 COPY ./requirements.txt .
 COPY ./pretrained-models ./pretrained-models

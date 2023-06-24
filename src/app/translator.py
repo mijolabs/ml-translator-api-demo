@@ -15,9 +15,9 @@ from app.schemas import (
 )
 
 
-class Polyglot:    
+class Translator:    
     def __init__(self):
-        self.__dict__.update(CONFIG.polyglot)
+        self.__dict__.update(CONFIG.translator)
 
         self.fasttext = self.init_identification_model()
         self.models = self.init_translation_models()
