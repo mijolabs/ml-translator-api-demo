@@ -1,19 +1,27 @@
 api:
   title: Polyglot API
-  version: 1.0
-  description: Translate Chinese or Russian into English
-  docs_endpoint:
-    openapi: /docs
-    redoc: /redoc
+  version: 0.1.0
+  description: Detect languages and translate input text.
+  response:
+    headers:
+      process_duration: true
+  endpoints:
+    healthcheck: /_health
+    docs:
+      openapi: /docs
+      redoc: /redoc
+  no_access_log:
+    - /favicon.ico
+    - /_health
 
 polyglot:
   max_batch_size: 32
   max_new_tokens: 512
   early_stopping: true
-  num_beams: 5
+  num_beams: 2
   models:
     base_directory: pretrained-models
-    detection: lid.176/lid.176.ftz
+    identification: lid.176/lid.176.ftz
     translation:
       ru-en: opus-mt-ru-en
       zh-en: opus-mt-zh-en

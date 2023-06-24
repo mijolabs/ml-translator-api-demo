@@ -7,3 +7,4 @@
 .gitlab-ci.yml
 .dockerignore
 **/dev-tools
+requirements-dev.txt

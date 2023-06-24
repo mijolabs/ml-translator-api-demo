@@ -26,6 +26,16 @@ class DetectionResult(BaseModel):
             }
         }
 
+class HealthCheckResult(BaseModel):
+    health: str = "ok"
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "health": "ok",
+            }
+        }
+
 class TranslationRequest(BaseModel):
     source: Union[str, None] = None
     target: Union[str, None] = "en"

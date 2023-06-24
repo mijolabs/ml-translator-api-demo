@@ -3,6 +3,7 @@ from collections import defaultdict
 from box import Box
 import fasttext
 from nltk import sent_tokenize
+import torch
 from transformers import MarianMTModel, MarianTokenizer
 
 from app.config import CONFIG
@@ -18,7 +19,7 @@ class Polyglot:
     def __init__(self):
         self.__dict__.update(CONFIG.polyglot)
 
-        self.fasttext = self.init_detection_model()
+        self.fasttext = self.init_identification_model()
         self.models = self.init_translation_models()
 
         self.valid_language_pairs = {
@@ -26,8 +27,8 @@ class Polyglot:
         }
 
     
-    def init_detection_model(self) -> fasttext.FastText:
-        model_filepath = f"{self.models.base_directory}/{self.models.detection}"
+    def init_identification_model(self) -> fasttext.FastText:
+        model_filepath = f"{self.models.base_directory}/{self.models.identification}"
         fasttext.FastText.eprint = lambda x: None
 
         return fasttext.load_model(model_filepath)
@@ -63,6 +64,7 @@ class Polyglot:
         )
 
 
+    @torch.no_grad()
     def generate_translation(self, translation_request: TranslationRequest) -> TranslationResult:
         language_pair = f"{translation_request.source}-{translation_request.target}"
 
