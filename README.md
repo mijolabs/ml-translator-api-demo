@@ -18,28 +18,49 @@ To start a local dev server:
 2. `python start-server.py`
 
 
-### Language Models
-https://huggingface.co/Helsinki-NLP/opus-mt-ru-en
-https://huggingface.co/Helsinki-NLP/opus-mt-zh-en
+## References
+### Neural Machine Translation (NMT) Models
+- https://huggingface.co/Helsinki-NLP/opus-mt-ru-en
+- https://huggingface.co/Helsinki-NLP/opus-mt-zh-en
+
 ```bibtex
+@article{tiedemann2023democratizing,
+  title={Democratizing neural machine translation with {OPUS-MT}},
+  author={Tiedemann, J{\"o}rg and Aulamo, Mikko and Bakshandaeva, Daria and Boggia, Michele and Gr{\"o}nroos, Stig-Arne and Nieminen, Tommi and Raganato\
+, Alessandro and Scherrer, Yves and Vazquez, Raul and Virpioja, Sami},
+  journal={Language Resources and Evaluation},
+  number={58},
+  pages={713--755},
+  year={2023},
+  publisher={Springer Nature},
+  issn={1574-0218},
+  doi={10.1007/s10579-023-09704-w}
+}
+
 @InProceedings{TiedemannThottingal:EAMT2020,
   author = {J{\"o}rg Tiedemann and Santhosh Thottingal},
   title = {{OPUS-MT} — {B}uilding open translation services for the {W}orld},
   booktitle = {Proceedings of the 22nd Annual Conferenec of the European Association for Machine Translation (EAMT)},
   year = {2020},
   address = {Lisbon, Portugal}
-  }
-```
-https://github.com/facebookresearch/fastText
+ }
+ ```
+### Language Identification (LID) Model
+
+- https://github.com/facebookresearch/fastText
+
+
 ```bibtex
-@article{joulin2016bag,
+@InProceedings{joulin2017bag,
   title={Bag of Tricks for Efficient Text Classification},
   author={Joulin, Armand and Grave, Edouard and Bojanowski, Piotr and Mikolov, Tomas},
-  journal={arXiv preprint arXiv:1607.01759},
-  year={2016}
+  booktitle={Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics: Volume 2, Short Papers},
+  month={April},
+  year={2017},
+  publisher={Association for Computational Linguistics},
+  pages={427--431},
 }
-```
-```bibtex
+
 @article{joulin2016fasttext,
   title={FastText.zip: Compressing text classification models},
   author={Joulin, Armand and Grave, Edouard and Bojanowski, Piotr and Douze, Matthijs and J{\'e}gou, H{\'e}rve and Mikolov, Tomas},

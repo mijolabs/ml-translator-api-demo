@@ -1,10 +1,4 @@
-from app.schemas import (
-    DetectionRequest,
-    DetectionResult,
-    TranslationRequest,
-    TranslationResult
-)
-
+from app.schemas import DetectionRequest, DetectionResult, TranslationRequest, TranslationResult
 
 
 def test_detect_language(translator):
