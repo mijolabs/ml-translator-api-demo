@@ -1,20 +1,43 @@
-from app.schemas import DetectionRequest, DetectionResult, TranslationRequest, TranslationResult
+from unittest.mock import MagicMock, patch
+
+import pytest
+
+from inference.translation import UnsupportedLanguagePairError, translate_text
 
 
-def test_detect_language(translator):
-    detection_request = DetectionRequest(text="Привет, это хороший день.")
-    result = translator.detect_language(detection_request)
+@patch("inference.translation.generate_translation")
+def test_translate_text(mock_generate_translation) -> None:
+    mock_context = MagicMock()
+    sample_source = "ru"
+    sample_target = "en"
+    sample_text = "Привет, мир!"
 
-    assert isinstance(result, DetectionResult)
-    assert isinstance(result.language, str)
-    assert isinstance(result.probability, float)
+    translate_text(
+        context=mock_context,
+        source=sample_source,
+        target=sample_target,
+        text=sample_text,
+    )
+
+    mock_generate_translation.assert_called_once_with(
+        context=mock_context,
+        source=sample_source,
+        target=sample_target,
+        text=sample_text,
+    )
 
 
-def test_generate_translation(translator):
-    translation_request = TranslationRequest(source="ru", text="Привет, это хороший день.")
-    result = translator.generate_translation(translation_request)
+@patch("inference.translation.generate_translation")
+def test_translate_text_unsupported_language_pair(mock_generate_translation) -> None:
+    sample_source = "xx"
+    sample_target = "en"
 
-    assert isinstance(result, TranslationResult)
-    assert isinstance(result.translation, str)
-    assert result.source == "ru"
-    assert result.target == "en"
+    with pytest.raises(UnsupportedLanguagePairError):
+        translate_text(
+            context=MagicMock(),
+            source=sample_source,
+            target=sample_target,
+            text=MagicMock(),
+        )
+
+    mock_generate_translation.assert_not_called()
