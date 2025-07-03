@@ -1,9 +1,0 @@
-fastapi
-fasttext-wheel
-nltk
-python-box[yaml]
-sacremoses
-sentencepiece
-torch
-transformers
-uvicorn[standard]

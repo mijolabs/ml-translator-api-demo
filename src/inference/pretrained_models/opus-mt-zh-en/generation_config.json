@@ -1,5 +1,4 @@
 {
-  "_from_model_config": true,
   "bad_words_ids": [
     [
       65000
@@ -12,5 +11,6 @@
   "max_length": 512,
   "num_beams": 6,
   "pad_token_id": 65000,
-  "transformers_version": "4.27.0.dev0"
+  "renormalize_logits": true,
+  "transformers_version": "4.32.0.dev0"
 }
