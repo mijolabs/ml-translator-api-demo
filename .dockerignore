@@ -1,10 +1,77 @@
-.git
-.venv
-**/__pycache__
-.pytest_cache
-.gitattributes
-.gitignore
-.gitlab-ci.yml
+# Ignore itself
 .dockerignore
-**/dev-tools
-requirements-dev.txt
+
+# Git-related files
+.git/
+.gitignore
+
+# Environment and configuration files
+.pre-commit-config.yaml
+.python-version
+.env
+.secrets/
+*.secret
+
+# Docker-related files
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
+
+# Terraform-related files
+_infra/
+.terraform/
+*.tfstate*
+terraform.tfvars*
+override.tf*
+
+# Documentation and metadata
+README.md
+
+# Virtual environments and dependencies
+.venv/
+venv/
+pip-wheel-metadata/
+Pipfile.lock
+requirements*.txt
+
+# Test-related files
+test_utils/
+*_test.py
+TEST*.xml
+.coverage
+coverage.xml
+htmlcov/
+
+# Python cache and compiled files
+**/__pycache__
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pytype/
+*.py[cod]
+
+# Logs and crash reports
+*.log
+crash*.log
+nohup.out
+*.out
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/editor-specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Miscellaneous
+node_modules/
+*.bak
+*.sw[opn]
+*.orig
+*.rej
+*.tmp
+*.temp
+*.pid
