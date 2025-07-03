@@ -15,7 +15,7 @@ async def handle_detection(
     text: str = Body(
         embed=True,
         max_length=512,
-        examples=[{"text": "Привет, это хороший день."}],
+        examples=["Привет, это хороший день."],
     ),
 ) -> DetectionResult:
     return detect_language(context=context, text=text)
@@ -28,18 +28,18 @@ async def handle_translation(
         embed=True,
         default=None,
         max_length=2,
-        examples=[{"source": "ru"}],
+        examples=["ru"],
     ),
     target: str = Body(
         embed=True,
         default="en",
         max_length=2,
-        examples=[{"target": "en"}],
+        examples=["en"],
     ),
     text: str = Body(
         embed=True,
         max_length=512,
-        examples=[{"text": "Привет, это хороший день."}],
+        examples=["Привет, это хороший день."],
     ),
 ) -> TranslationResult:
     """
