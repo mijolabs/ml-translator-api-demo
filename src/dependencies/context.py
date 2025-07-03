@@ -2,12 +2,12 @@ from dataclasses import dataclass
 from typing import Annotated, Any
 
 from fastapi import Depends, Request
-from fasttext.FastText import _FastText as FastText
+from fasttext.FastText import _FastText as FastTextModel
 
 
 @dataclass(slots=True)
 class InferenceDependencies:
-    fasttext: FastText
+    fasttext: FastTextModel
     opus_mt: dict[str, dict[str, Any]]
 
 
