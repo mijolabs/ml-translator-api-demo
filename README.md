@@ -1,24 +1,45 @@
-# Translator API Demo
-This is a demo project for a REST API for translating text using pretrained language models. The stack consists of FastAPI and Uvicorn to provide the API service, FastTrack and accompanying language identification model is used for automatic language detection, and Opus-MT language models are used for the text translation. Currently only supports the following language pairs, but additional Opus-MT models can be added.
+# ML Translator API Demo
+This is a demo project showcasing a REST API for text translation using pretrained language models. The stack includes [FastAPI](https://github.com/fastapi/fastapi) with [Uvicorn](https://github.com/encode/uvicorn) for serving the API, [FastText by Facebook Research](https://github.com/facebookresearch/fastText) for automatic language detection, and [OPUS-MT models by Helsinki-NLP](https://huggingface.co/Helsinki-NLP) for the machine translation. The project dependencies are managed by [uv](https://github.com/astral-sh/uv).
+
+Currently, only a limited set of language pairs are supported, but additional OPUS-MT models can be integrated easily. The following language pairs come bundled in the app:
 - `ru-en`
 - `zh-en`
 
-### Local Development
-1. `git clone ...`
-2. `cd src`
-3. `pip install -r requirements-dev.txt`
+The model files are stored with Git LFS - you'll need to use it to pull the model files and make them available locally.
 
-### Docker Build
-1. `cd src`
-2. `docker build -t translator .`
-3. `docker run -p "80:80" translator`
+## Usage Instructions
+Run tests with `uv run pytest src`.
 
-To start a local dev server:
-1. `cd src/dev-tools`
-2. `python start-server.py`
+To start the service, either run it locally with `uv run src/main.py` or buildrun it with Docker:
+1. `docker build -t translator .`
+2. `docker run -p "8080:8080" translator`
 
+Browse to `http://localhost:8080/docs` to view the API docs.
 
 ## References
+### Language Identification (LID) Model
+
+- https://github.com/facebookresearch/fastText
+
+```bibtex
+@InProceedings{joulin2017bag,
+  title={Bag of Tricks for Efficient Text Classification},
+  author={Joulin, Armand and Grave, Edouard and Bojanowski, Piotr and Mikolov, Tomas},
+  booktitle={Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics: Volume 2, Short Papers},
+  month={April},
+  year={2017},
+  publisher={Association for Computational Linguistics},
+  pages={427--431},
+}
+
+@article{joulin2016fasttext,
+  title={FastText.zip: Compressing text classification models},
+  author={Joulin, Armand and Grave, Edouard and Bojanowski, Piotr and Douze, Matthijs and J{\'e}gou, H{\'e}rve and Mikolov, Tomas},
+  journal={arXiv preprint arXiv:1612.03651},
+  year={2016}
+}
+```
+
 ### Neural Machine Translation (NMT) Models
 - https://huggingface.co/Helsinki-NLP/opus-mt-ru-en
 - https://huggingface.co/Helsinki-NLP/opus-mt-zh-en
@@ -45,26 +66,3 @@ To start a local dev server:
   address = {Lisbon, Portugal}
  }
  ```
-### Language Identification (LID) Model
-
-- https://github.com/facebookresearch/fastText
-
-
-```bibtex
-@InProceedings{joulin2017bag,
-  title={Bag of Tricks for Efficient Text Classification},
-  author={Joulin, Armand and Grave, Edouard and Bojanowski, Piotr and Mikolov, Tomas},
-  booktitle={Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics: Volume 2, Short Papers},
-  month={April},
-  year={2017},
-  publisher={Association for Computational Linguistics},
-  pages={427--431},
-}
-
-@article{joulin2016fasttext,
-  title={FastText.zip: Compressing text classification models},
-  author={Joulin, Armand and Grave, Edouard and Bojanowski, Piotr and Douze, Matthijs and J{\'e}gou, H{\'e}rve and Mikolov, Tomas},
-  journal={arXiv preprint arXiv:1612.03651},
-  year={2016}
-}
-```
