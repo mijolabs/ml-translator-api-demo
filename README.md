@@ -1,20 +1,25 @@
 # ML Translator API Demo
-This is a demo project showcasing a REST API for text translation using pretrained language models. The stack includes [FastAPI](https://github.com/fastapi/fastapi) with [Uvicorn](https://github.com/encode/uvicorn) for serving the API, [FastText by Facebook Research](https://github.com/facebookresearch/fastText) for automatic language detection, and [OPUS-MT models by Helsinki-NLP](https://huggingface.co/Helsinki-NLP) for the machine translation. The project dependencies are managed by [uv](https://github.com/astral-sh/uv).
+This is a demo project showcasing a REST API for text translation using pretrained language models.
+
+The stack consists of [FastAPI](https://github.com/fastapi/fastapi) with [Uvicorn](https://github.com/encode/uvicorn) for serving the API, [FastText by Facebook Research](https://github.com/facebookresearch/fastText) for automatic language detection, and [OPUS-MT models by Helsinki-NLP](https://huggingface.co/Helsinki-NLP) for the machine translation.
+
+The project dependencies are managed by [uv](https://github.com/astral-sh/uv).
 
 Currently, only a limited set of language pairs are supported, but additional OPUS-MT models can be integrated easily. The following language pairs come bundled in the app:
 - `ru-en`
 - `zh-en`
 
-The model files are stored with Git LFS - you'll need to use it to pull the model files and make them available locally.
+This repo stores the model files with Git LFS. Run `git lfs pull` after cloning the repository to make the model files available locally.
 
-## Usage Instructions
-Run tests with `uv run pytest src`.
-
+## Instructions
 To start the service, either run it locally with `uv run src/main.py` or buildrun it with Docker:
 1. `docker build -t translator .`
 2. `docker run -p "8080:8080" translator`
 
-Browse to `http://localhost:8080/docs` to view the API docs.
+Browse to http://localhost:8080/docs to view the API docs.
+
+### Tests
+Run tests with `uv run pytest src`.
 
 ## References
 ### Language Identification (LID) Model
