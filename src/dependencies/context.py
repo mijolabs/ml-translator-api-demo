@@ -5,13 +5,13 @@ from fastapi import Depends, Request
 from fasttext.FastText import _FastText as FastTextModel
 
 
-@dataclass(slots=True)
+@dataclass(slots=True, kw_only=True)
 class InferenceDependencies:
     fasttext: FastTextModel
     opus_mt: dict[str, dict[str, Any]]
 
 
-@dataclass(slots=True)
+@dataclass(slots=True, kw_only=True)
 class ContextContainer:
     request: Request
     inference: InferenceDependencies
